@@ -1,4 +1,6 @@
 const axios = require("axios");
+const Table = require("cli-table");
+const emoji = require("node-emoji");
 const access_token = process.env.ACCESS_TOKEN;
 const API_URL = process.env.API_URL;
 const PAGES = 10;
@@ -61,12 +63,38 @@ const sortList = async () => {
       return list[b] - list[a];
     })
     .map(key => ({
-      [key]: list[key]
+      name: key,
+      amount: list[key]
     }));
 };
 
+const getReward = index => {
+  switch (index) {
+    case 0:
+      return emoji.get("first_place_medal");
+    case 1:
+      return emoji.get("second_place_medal");
+    case 2:
+      return emoji.get("third_place_medal");
+    default:
+      return "";
+  }
+};
+
+const displayList = list => {
+  const table = new Table({
+    head: ["", "Name", "Count"],
+    colWidths: [4, 50, 7]
+  });
+
+  list.forEach((entry, index) => {
+    table.push([getReward(index), entry.name, entry.amount]);
+  });
+  console.log(table.toString());
+};
+
 sortList().then(finalList => {
-  console.log(`Amount of review / pers on the last ${PAGES * 30} PRs : `);
-  console.log(finalList);
-  console.info("Execution time: %dms", new Date() - start);
+  console.log(`Amount of review / pers on the last ${PAGES * 30} PRs : \n`);
+  displayList(finalList);
+  console.info("\n==> Execution time: %dms", new Date() - start);
 });
