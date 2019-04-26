@@ -1,17 +1,18 @@
 const axios = require("axios");
 const Table = require("cli-table");
 const emoji = require("node-emoji");
-const access_token = process.env.ACCESS_TOKEN;
+
+const ACCESS_TOKEN = process.env.ACCESS_TOKEN;
 const API_URL = process.env.API_URL;
 const PAGES = 10;
 
 const start = new Date();
 const allIds = [];
-const reviewsArray = {};
+const globalReviews = {};
 
 const fetchIdsFromPage = async i => {
   const results = await axios(
-    `${API_URL}/pulls?state=all&page=${i}&access_token=${access_token}`
+    `${API_URL}/pulls?state=all&page=${i}&access_token=${ACCESS_TOKEN}`
   );
   results.data.map(res => {
     allIds.push(res.number);
@@ -20,13 +21,13 @@ const fetchIdsFromPage = async i => {
 
 const fetchReviewerFormPR = async pr => {
   const results = await axios(
-    `${API_URL}/pulls/${pr}/reviews?access_token=${access_token}`
+    `${API_URL}/pulls/${pr}/reviews?access_token=${ACCESS_TOKEN}`
   );
   results.data.map(res => {
-    if (reviewsArray[res.user.login]) {
-      reviewsArray[res.user.login] = reviewsArray[res.user.login] + 1;
+    if (globalReviews[res.user.login]) {
+      globalReviews[res.user.login] = globalReviews[res.user.login] + 1;
     } else {
-      reviewsArray[res.user.login] = 1;
+      globalReviews[res.user.login] = 1;
     }
   });
 };
@@ -50,7 +51,7 @@ const getReviewersFromAllPR = async () => {
 
   try {
     await Promise.all(allPR.map(pr => fetchReviewerFormPR(pr)));
-    return reviewsArray;
+    return globalReviews;
   } catch (e) {
     console.error(e);
   }
