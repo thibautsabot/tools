@@ -3,13 +3,12 @@ const access_token = process.env.ACCESS_TOKEN;
 const API_URL = process.env.API_URL;
 
 const PAGES = 10;
-const BASE_URL = API_URL;
 
 const getAllPR = async () => {
   try {
     for (i = 0; i != PAGES; i++) {
       const results = await axios(
-        `${BASE_URL}/pulls?state=all&page=${i}&access_token=${access_token}`
+        `${API_URL}/pulls?state=all&page=${i}&access_token=${access_token}`
       );
       return results.data.map(res => res.number);
     }
@@ -26,7 +25,7 @@ const getReviewersFromPR = async () => {
     allPR.map(async pr => {
       try {
         const results = await axios(
-          `${BASE_URL}/pulls/${pr}/reviews?access_token=${access_token}`
+          `${API_URL}/pulls/${pr}/reviews?access_token=${access_token}`
         );
         results.data.map(res => {
           if (reviewsArray[res.user.login]) {
