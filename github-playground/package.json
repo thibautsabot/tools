@@ -2,7 +2,7 @@
   "name": "github-playground",
   "version": "1.0.0",
   "description": "Get amount of review per person",
-  "main": "src/index.js",
+  "main": "src/main.js",
   "scripts": {},
   "author": "thibaut.sabot",
   "license": "ISC",
