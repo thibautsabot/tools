@@ -4,4 +4,4 @@
 
 npm install
 
-ACCESS_TOKEN=XXX API_URL=https://github.xxx/api/v3/repos/xxxx npm run serve
+ACCESS_TOKEN=XXX API_URL=https://github.xxx/api/v3/repos/xxxx node src/main.js
