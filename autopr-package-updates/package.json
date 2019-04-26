@@ -1,0 +1,26 @@
+{
+  "name": "autopr-package-updates",
+  "version": "1.0.0",
+  "description": "Create Pull Requests whenever a package needs to be updated",
+  "main": "src/main.js",
+  "scripts": {
+    "watch": "babel -w src/ -d dist/",
+    "build": "babel src/ -d dist/",
+    "serve": "babel -w src/ -d dist/ | nodemon --watch dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "thibaut.sabot",
+  "license": "ISC",
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "nodemon": "^1.18.10"
+  },
+  "dependencies": {
+    "npm-check-updates": "^3.1.8",
+    "nodegit": "^0.24.2",
+    "promise-series-node": "0.0.1"
+  }
+}
