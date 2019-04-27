@@ -1,7 +1,7 @@
 {
   "name": "github-reviews-ranking",
   "version": "1.0.0",
-  "description": "Get the ranking of pull request reviews per user",
+  "description": "GitHub Repository reviewers ranking",
   "main": "src/main.js",
   "scripts": {},
   "author": "thibaut.sabot",
