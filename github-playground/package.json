@@ -1,7 +1,7 @@
 {
-  "name": "github-playground",
+  "name": "github-reviews-ranking",
   "version": "1.0.0",
-  "description": "Get amount of review per person",
+  "description": "Get the ranking of pull request reviews per user",
   "main": "src/main.js",
   "scripts": {},
   "author": "thibaut.sabot",
@@ -12,7 +12,6 @@
   "dependencies": {
     "axios": "^0.18.0",
     "cli-table": "^0.3.1",
-    "esm": "^3.2.22",
     "node-emoji": "^1.10.0"
   }
 }

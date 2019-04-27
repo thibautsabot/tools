@@ -3,8 +3,12 @@ const Table = require("cli-table");
 const emoji = require("node-emoji");
 
 const ACCESS_TOKEN = process.env.ACCESS_TOKEN;
-const API_URL = process.env.API_URL;
-const PAGES = 10;
+const API_URL =
+  "https://api.github." +
+  (process.env.CUSTOM_DOMAIN || "com") +
+  "/repos/" +
+  process.env.REPO;
+const PAGES = process.env.PAGES || 10;
 
 const start = new Date();
 const allIds = [];
